@@ -7,9 +7,8 @@ function App() {
     <>
       <h1>TItle</h1>
       <Navbar />
-      <div id="detail">
-        <Outlet />
-      </div>
+
+      <Outlet />
     </>
   );
 }

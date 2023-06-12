@@ -1,10 +1,17 @@
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
 import { fetchComments } from '../../Redux/Reducers';
 import { IPost } from '../../Redux/types';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 
-export const PostItem: any = ({ id, userId, body, title }: IPost) => {
+export const PostItem = ({ id, userId, body, title }: IPost) => {
   const dispatch = useAppDispatch();
-  const { comments, error } = useAppSelector((state) => state.CommentsReducer);
+  const { comments, error, isFetching } = useAppSelector(
+    (state) => state.CommentsReducer
+  );
+
+  const [visibleComments, setVisibleComments] = useState(false);
+
   return (
     <div>
       <div>
@@ -17,15 +24,20 @@ export const PostItem: any = ({ id, userId, body, title }: IPost) => {
         <span> --- </span>
         <span>{body}</span>
       </div>
+      <Link to={`users/${userId}`}>
+        <button>to User page</button>
+      </Link>
       <button
         onClick={() => {
+          setVisibleComments(true);
           dispatch(fetchComments(id));
         }}
       >
         Comments
       </button>
-      {error && <h1>ERROR</h1>}
-      {comments.length && (
+      {visibleComments && error && <h1>ERROR</h1>}
+      {visibleComments && isFetching && <h2>Loading . . . </h2>}
+      {visibleComments && (
         <div>
           {comments.map((elem) => (
             <div>{elem.email}</div>

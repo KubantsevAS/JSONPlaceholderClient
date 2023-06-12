@@ -20,3 +20,12 @@ export const getCommentsForPost = async (id: number) => {
     });
   return request;
 };
+
+export const getUserInfo = async (userId: number) => {
+  const request = await instance
+    .get('users', { params: { id: userId } })
+    .then((response) => {
+      return response.data;
+    });
+  return request;
+};

@@ -1,5 +1,5 @@
 import { AppDispatch } from '../../store';
-import { getPosts } from '../../../api/api';
+import { getPosts } from '../../../api';
 import { postsSlice } from './PostsSlice';
 import { getErrorMessage, makePause } from '../../../utils';
 
