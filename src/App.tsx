@@ -1,16 +1,8 @@
 import { Outlet } from 'react-router-dom';
 import { Navbar } from './components/index.ts';
+import './App.css';
 
 function App() {
-  // const dispatch = useAppDispatch();
-  // const { posts, isFetching, error } = useAppSelector(
-  //   (state) => state.postsReducer
-  // );
-
-  // useEffect(() => {
-  //   dispatch(fetchPosts());
-  // }, [dispatch]);
-
   return (
     <>
       <h1>TItle</h1>

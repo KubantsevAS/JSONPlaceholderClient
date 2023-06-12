@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { AboutMe } from '../../Pages/index.ts';
-import App from '../../App.tsx';
+import { AboutMe, PostsList } from '../Pages';
+import App from '../App.tsx';
 
 export const router = createBrowserRouter([
   {
@@ -9,12 +9,12 @@ export const router = createBrowserRouter([
     errorElement: <h1>OOPS</h1>,
     children: [
       {
-        path: 'aboutMe/',
-        element: <AboutMe />,
+        path: '/',
+        element: <PostsList />,
       },
       {
-        path: 'posts/',
-        element: <h1>POSTS LIST</h1>,
+        path: 'aboutMe/',
+        element: <AboutMe />,
       },
     ],
   },

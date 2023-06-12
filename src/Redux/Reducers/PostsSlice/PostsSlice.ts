@@ -1,19 +1,13 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { IPost } from '../../types';
 
-export interface IPosts {
-  body: string;
-  id: number;
-  title: string;
-  userId: number;
-}
-
-interface IUserState {
-  posts: IPosts[];
+interface IPostState {
+  posts: IPost[];
   isFetching: boolean;
   error: string;
 }
 
-const initialState: IUserState = {
+const initialState: IPostState = {
   posts: [],
   isFetching: false,
   error: '',
@@ -27,7 +21,7 @@ export const postsSlice = createSlice({
       state.isFetching = true;
       state.error = '';
     },
-    postsFetchingSuccess(state, action: PayloadAction<IPosts[]>) {
+    postsFetchingSuccess(state, action: PayloadAction<IPost[]>) {
       state.isFetching = false;
       state.error = '';
       state.posts = action.payload;
