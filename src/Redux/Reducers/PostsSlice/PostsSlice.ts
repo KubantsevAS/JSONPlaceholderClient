@@ -19,6 +19,7 @@ export const postsSlice = createSlice({
   reducers: {
     postsFetching(state) {
       state.isFetching = true;
+      state.posts = [];
       state.error = '';
     },
     postsFetchingSuccess(state, action: PayloadAction<IPost[]>) {

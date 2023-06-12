@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { fetchComments } from '../../Redux/Reducers';
 import { IPost } from '../../Redux/types';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
@@ -10,7 +10,12 @@ export const PostItem = ({ id, userId, body, title }: IPost) => {
     (state) => state.CommentsReducer
   );
 
-  const [visibleComments, setVisibleComments] = useState(false);
+  const [visibleComments, setVisibleComments] = useState<boolean>(false);
+
+  const onClickHandler = useCallback(() => {
+    setVisibleComments(!visibleComments);
+    dispatch(fetchComments(id));
+  }, [dispatch, id, visibleComments]);
 
   return (
     <div>
@@ -27,15 +32,8 @@ export const PostItem = ({ id, userId, body, title }: IPost) => {
       <Link to={`users/${userId}`}>
         <button>to User page</button>
       </Link>
-      <button
-        onClick={() => {
-          setVisibleComments(true);
-          dispatch(fetchComments(id));
-        }}
-      >
-        Comments
-      </button>
-      {visibleComments && error && <h1>ERROR</h1>}
+      <button onClick={onClickHandler}>Comments</button>
+      {visibleComments && error && <h2>{error}</h2>}
       {visibleComments && isFetching && <h2>Loading . . . </h2>}
       {visibleComments && (
         <div>
