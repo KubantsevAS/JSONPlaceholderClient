@@ -1,9 +1,9 @@
 import createSagaMiddleware from '@redux-saga/core';
-import postsReducer from './Reducer/PostsSlice';
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import PostsReducer from './Reducers/PostsSlice/PostsSlice';
 
 const rootReducer = combineReducers({
-  postsReducer,
+  PostsReducer,
 });
 
 export const setupStore = () => {

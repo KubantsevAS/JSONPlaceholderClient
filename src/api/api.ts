@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { IPosts } from '../Redux/Reducer/PostsSlice';
+import { IPosts } from '../Redux/Reducers/PostsSlice/PostsSlice';
 
 const instance = axios.create({
   baseURL: 'https://jsonplaceholder.typicode.com/',

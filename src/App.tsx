@@ -1,26 +1,23 @@
-import { useEffect } from 'react';
-import './App.css';
-import { useAppDispatch, useAppSelector } from './hooks/redux';
-import { fetchPosts } from './Redux/Reducer/ActionCreator';
+import { Outlet } from 'react-router-dom';
+import { Navbar } from './components/index.ts';
 
 function App() {
-  const dispatch = useAppDispatch();
-  const { posts } = useAppSelector((state) => state.postsReducer);
+  // const dispatch = useAppDispatch();
+  // const { posts, isFetching, error } = useAppSelector(
+  //   (state) => state.postsReducer
+  // );
 
   // useEffect(() => {
   //   dispatch(fetchPosts());
   // }, [dispatch]);
-  console.log(posts);
+
   return (
     <>
-      <button
-        onClick={() => {
-          dispatch(fetchPosts());
-        }}
-      >
-        CLICKLE
-      </button>
-      <div>{JSON.stringify(posts, null, 2)}</div>
+      <h1>TItle</h1>
+      <Navbar />
+      <div id="detail">
+        <Outlet />
+      </div>
     </>
   );
 }
