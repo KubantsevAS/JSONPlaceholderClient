@@ -6,7 +6,7 @@ import { PostItem, SortAndFilterMenu } from '../../components';
 export const PostsList = () => {
   const dispatch = useAppDispatch();
   const { posts, isFetching, error } = useAppSelector(
-    (state) => state.PostsReducer
+    (state) => state.postsReducer
   );
 
   useEffect(() => {

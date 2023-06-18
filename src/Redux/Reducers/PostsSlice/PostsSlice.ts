@@ -13,7 +13,7 @@ const initialState: IPostState = {
   error: '',
 };
 
-export const postsSlice = createSlice({
+const postsSlice = createSlice({
   name: 'posts',
   initialState,
   reducers: {
@@ -48,4 +48,12 @@ export const postsSlice = createSlice({
   },
 });
 
-export default postsSlice.reducer;
+export const {
+  postsFetching,
+  postsFetchingSuccess,
+  postsFetchingError,
+  postsSortByTitleUp,
+  postsSortByTitleDown,
+} = postsSlice.actions;
+
+export const postsReducer = postsSlice.reducer;

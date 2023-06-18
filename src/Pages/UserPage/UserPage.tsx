@@ -14,7 +14,7 @@ export const UserPage = () => {
   }, [dispatch, userIdNumber]);
 
   const { posts, isFetching, error } = useAppSelector(
-    (state) => state.PostsReducer
+    (state) => state.postsReducer
   );
 
   return (

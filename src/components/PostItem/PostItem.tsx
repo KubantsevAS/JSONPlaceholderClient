@@ -5,7 +5,7 @@ import { Comments } from '..';
 import { useAppSelector } from '../../hooks/redux';
 
 export const PostItem = ({ id, userId, body, title }: IPost) => {
-  const { comments } = useAppSelector((state) => state.CommentsReducer);
+  const { comments } = useAppSelector((state) => state.commentsReducer);
   const localComments = comments.find((item) => item[0].postId === id);
   return (
     <div className={styles['post']}>
@@ -24,7 +24,7 @@ export const PostItem = ({ id, userId, body, title }: IPost) => {
         <button>to User page</button>
       </Link>
 
-      <Comments id={id} comments={localComments} key={id} />
+      {comments && <Comments id={id} comments={localComments} key={id} />}
     </div>
   );
 };

@@ -1,16 +1,20 @@
-import { commentsSlice } from '.';
 import { getCommentsForPost } from '../../../api';
 import { getErrorMessage, makePause } from '../../../utils';
 import { AppDispatch } from '../../store';
+import {
+  commentsFetching,
+  commentsFetchingError,
+  commentsFetchingSuccess,
+} from './CommentsSlice';
 
 export const fetchComments =
   (postId: number) => async (dispatch: AppDispatch) => {
     try {
-      dispatch(commentsSlice.actions.commentsFetching());
+      dispatch(commentsFetching());
       await makePause(500);
       const response = await getCommentsForPost(postId);
-      dispatch(commentsSlice.actions.commentsFetchingSuccess(response));
+      dispatch(commentsFetchingSuccess(response));
     } catch (e) {
-      dispatch(commentsSlice.actions.commentsFetchingError(getErrorMessage(e)));
+      dispatch(commentsFetchingError(getErrorMessage(e)));
     }
   };

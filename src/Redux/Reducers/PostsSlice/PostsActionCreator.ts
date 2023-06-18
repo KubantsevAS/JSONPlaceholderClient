@@ -1,6 +1,12 @@
 import { AppDispatch } from '../../store';
 import { getPosts } from '../../../api';
-import { postsSlice } from './PostsSlice';
+import {
+  postsFetching,
+  postsFetchingError,
+  postsFetchingSuccess,
+  postsSortByTitleDown,
+  postsSortByTitleUp,
+} from './PostsSlice';
 import { getErrorMessage, makePause } from '../../../utils';
 
 interface IFetchPostsParams {
@@ -12,35 +18,35 @@ export const fetchPosts =
   ({ userId, title }: IFetchPostsParams) =>
   async (dispatch: AppDispatch) => {
     try {
-      dispatch(postsSlice.actions.postsFetching());
+      dispatch(postsFetching());
       await makePause(500);
       const response = await getPosts(userId);
       if (title) {
         dispatch(
-          postsSlice.actions.postsFetchingSuccess(
+          postsFetchingSuccess(
             response.filter((elem) => elem.title.includes(title))
           )
         );
       } else {
-        dispatch(postsSlice.actions.postsFetchingSuccess(response));
+        dispatch(postsFetchingSuccess(response));
       }
     } catch (e) {
-      dispatch(postsSlice.actions.postsFetchingError(getErrorMessage(e)));
+      dispatch(postsFetchingError(getErrorMessage(e)));
     }
   };
 
 export const sortPostsUp = () => (dispatch: AppDispatch) => {
   try {
-    dispatch(postsSlice.actions.postsSortByTitleUp());
+    dispatch(postsSortByTitleUp());
   } catch (e) {
-    dispatch(postsSlice.actions.postsFetchingError(getErrorMessage(e)));
+    dispatch(postsFetchingError(getErrorMessage(e)));
   }
 };
 
 export const sortPostsDown = () => (dispatch: AppDispatch) => {
   try {
-    dispatch(postsSlice.actions.postsSortByTitleDown());
+    dispatch(postsSortByTitleDown());
   } catch (e) {
-    dispatch(postsSlice.actions.postsFetchingError(getErrorMessage(e)));
+    dispatch(postsFetchingError(getErrorMessage(e)));
   }
 };

@@ -5,7 +5,7 @@ import { IComment } from '../../Redux/types';
 
 interface ICommentsProps {
   id: number;
-  comments: IComment[];
+  comments?: IComment[];
 }
 
 export const Comments = ({ id, comments }: ICommentsProps) => {

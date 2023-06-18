@@ -33,4 +33,10 @@ export const commentsSlice = createSlice({
   },
 });
 
-export default commentsSlice.reducer;
+export const {
+  commentsFetching,
+  commentsFetchingSuccess,
+  commentsFetchingError,
+} = commentsSlice.actions;
+
+export const commentsReducer = commentsSlice.reducer;
