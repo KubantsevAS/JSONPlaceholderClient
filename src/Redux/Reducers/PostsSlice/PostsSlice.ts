@@ -31,6 +31,20 @@ export const postsSlice = createSlice({
       state.isFetching = false;
       state.error = action.payload;
     },
+    postsSortByTitleUp(state) {
+      state.posts = [
+        ...state.posts.sort((item1, item2) =>
+          item1.title > item2.title ? 1 : -1
+        ),
+      ];
+    },
+    postsSortByTitleDown(state) {
+      state.posts = [
+        ...state.posts.sort((item1, item2) =>
+          item1.title > item2.title ? -1 : 1
+        ),
+      ];
+    },
   },
 });
 

@@ -1,2 +1,2 @@
 export { postsSlice } from './PostsSlice';
-export { fetchPosts } from './PostsActionCreator';
+export { fetchPosts, sortPostsUp, sortPostsDown } from './PostsActionCreator';

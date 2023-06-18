@@ -7,7 +7,7 @@ export const fetchComments =
   (postId: number) => async (dispatch: AppDispatch) => {
     try {
       dispatch(commentsSlice.actions.commentsFetching());
-      await makePause(1000);
+      await makePause(500);
       const response = await getCommentsForPost(postId);
       dispatch(commentsSlice.actions.commentsFetchingSuccess(response));
     } catch (e) {
