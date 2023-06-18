@@ -13,11 +13,11 @@ export const router = createBrowserRouter([
         element: <PostsList />,
       },
       {
-        path: 'aboutMe/',
+        path: 'aboutMe',
         element: <AboutMe />,
       },
       {
-        path: 'users/:userId',
+        path: '/:userId',
         element: <UserPage />,
       },
     ],

@@ -9,6 +9,8 @@ export const Navbar = () => {
       <Link to={'aboutMe/'}>
         <button>About Me</button>
       </Link>
+
+      <h2>NavBarEnd</h2>
     </nav>
   );
 };

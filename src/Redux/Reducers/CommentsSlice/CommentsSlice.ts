@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { IComment } from '../../types';
 
 interface ICommentsState {
-  comments: IComment[];
+  comments: IComment[][];
   isFetching: boolean;
   error: string;
 }
@@ -19,12 +19,11 @@ export const commentsSlice = createSlice({
   reducers: {
     commentsFetching(state) {
       state.isFetching = true;
-      state.comments = [];
       state.error = '';
     },
     commentsFetchingSuccess(state, action: PayloadAction<IComment[]>) {
       state.isFetching = false;
-      state.comments = action.payload;
+      state.comments = [...state.comments, action.payload];
       state.error = '';
     },
     commentsFetchingError(state, action: PayloadAction<string>) {
