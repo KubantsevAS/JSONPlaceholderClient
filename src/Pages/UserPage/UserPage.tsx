@@ -10,7 +10,7 @@ export const UserPage = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchPosts(userIdNumber));
+    dispatch(fetchPosts({ userId: userIdNumber }));
   }, [dispatch, userIdNumber]);
 
   const { posts, isFetching, error } = useAppSelector(
@@ -20,8 +20,9 @@ export const UserPage = () => {
   return (
     <>
       <h1>IT'S USER PAGE</h1>
-      <div>{userIdNumber}</div>
-      {isFetching && <h1>Loading...</h1>}
+      <div>USER ID: {userIdNumber}</div>
+      <h2>Here will be User Info</h2>
+      {isFetching && <h1>Loading Posts...</h1>}
       {error && <h1>{error}</h1>}
       {posts.map((elem) => (
         <PostItem

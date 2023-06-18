@@ -3,13 +3,27 @@ import { getPosts } from '../../../api';
 import { postsSlice } from './PostsSlice';
 import { getErrorMessage, makePause } from '../../../utils';
 
+interface IFetchPostsParams {
+  userId?: number;
+  title?: string;
+}
+
 export const fetchPosts =
-  (userId?: number) => async (dispatch: AppDispatch) => {
+  ({ userId, title }: IFetchPostsParams) =>
+  async (dispatch: AppDispatch) => {
     try {
       dispatch(postsSlice.actions.postsFetching());
       await makePause(500);
       const response = await getPosts(userId);
-      dispatch(postsSlice.actions.postsFetchingSuccess(response));
+      if (title) {
+        dispatch(
+          postsSlice.actions.postsFetchingSuccess(
+            response.filter((elem) => elem.title.includes(title))
+          )
+        );
+      } else {
+        dispatch(postsSlice.actions.postsFetchingSuccess(response));
+      }
     } catch (e) {
       dispatch(postsSlice.actions.postsFetchingError(getErrorMessage(e)));
     }
