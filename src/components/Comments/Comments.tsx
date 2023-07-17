@@ -13,8 +13,10 @@ export const Comments = ({ id, comments }: ICommentsProps) => {
   const [visibleComments, setVisibleComments] = useState<boolean>(false);
 
   const onClickHandler = () => {
+    if (!visibleComments && !comments) {
+      dispatch(fetchComments(id));
+    }
     setVisibleComments(!visibleComments);
-    dispatch(fetchComments(id));
   };
   return (
     <div>
